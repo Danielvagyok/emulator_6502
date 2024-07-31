@@ -1,0 +1,7 @@
+vivado*.jou
+vivado*.log
+vivado*.str
+project_1/*
+.iis
+.venv
+.vscode

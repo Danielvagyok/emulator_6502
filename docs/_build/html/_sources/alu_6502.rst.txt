@@ -1,0 +1,38 @@
+Arithmetic Logical Unit
+=======================
+
+This is a subunit of the CPU which executes arithmetic and logical operations.
+The input of the ALU is changed on rising edge of clock. The operations are
+executed immediately when a change in input is detected.
+
+The flags from PSR are separated and returned only if the respective operation
+affects a given flag.
+
+- c = Carry flag. Set if bit 8 in the extended result is set (overflow in bit 7).
+- z = Zero flag. Set if alu_reg_out = 0.
+- v = oVerflow flag. Set if signed overflow occurs, i.e., if adding two positive
+  numbers results in a negative number, or adding two negative numbers results
+  in a positive number.
+- n = Negativity flag. Set if bit 7 is set.
+
+.. csv-table:: 
+    :header: "alu_op", "alu_reg_out", "Affected flags", "Description"
+
+    "ADC", "alu_reg_a + alu_reg_b + c_in", "c,z,v,n", "Add with carry"
+    "ADD", "alu_reg_a + alu_reg_b", "c", "This addition cannot ba accessed
+    directly. Only :ref:`microcode` can access it."
+    "AND_OP", "alu_reg_a & alu_reg_b", "z,n", "AND"
+    "CMP", "alu_reg_a - alu_reg_b", "c,z,n", "CoMPare registers. The flags
+    indicate which of the operands is greater."
+    "EOR", "alu_reg_a ^ alu_reg_b", "z,n", "Exclusive OR"
+    "LDA, LDX, TAX, TSX, TXA, TXS", "alu_reg_b", "z,n", "LoaD or Transfer data"
+    "ORA", "alu_reg_a | alu_reg_b", "z,n", "OR"
+    "SBC", "alu_reg_a - alu_reg_b + (1 - c_in)", "c,z,v,n", "SuBtract with Carry"
+    "ASL", "alu_reg_a << 1", "c,z,n", "Arithmetic Shift Left"
+    "LSR", "alu_reg_a >> 1", "c,z,n", "Logical Shift Right. Carry will take the
+    previous value of bit 0 in alu_reg_a."
+    "ROL_OP", "(alu_reg_a << 1) | c_in", "c,z,n", "ROtate Left"
+    "ROR_OP", "(alu_reg_a >> 1) | (c_in << 7)", "c,z,n", "ROtate Right"
+    "DEC, DEX", "alu_reg_a - 1", "z,n", "DECrement"
+    "INC", "alu_reg_a + 1", "z,n", "INCrement"
+    "STA, STX, NOP", "---", "---", "STore and No-OPeration. Do nothing."

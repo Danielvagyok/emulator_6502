@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>NES Emulator documentation &#8212; NES Emulator 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=c058f7c8" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=2709fde1"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Central Processing Unit" href="cpu.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="nes-emulator-documentation">
+<h1>NES Emulator documentation<a class="headerlink" href="#nes-emulator-documentation" title="Link to this heading">¶</a></h1>
+<p>This documentation details my implementation of an NES. However, as of now, only
+the CPU is in a usable condition.</p>
+<p>The goal of this project is to develop a VHDL code which can be synthetised on
+an arbitrary FPGA chip to emulate the behavior of an NES.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpu.html">1. CPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_6502.html">1.1. 6502 CPU</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="alu_6502.html">1.1.1. ALU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="id_6502.html">1.1.2. ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_6502.html#memory">1.1.3. Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_6502.html#registers">1.1.4. Registers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_6502.html#instructions">1.1.5. Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_6502.html#addressing-modes">1.1.6. Addressing modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_6502.html#pinout">1.1.7. Pinout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_6502.html#microcode">1.1.8. Microcode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_6502.html#state-machine">1.1.9. State machine</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="apu.html">1.2. APU</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ppu.html">2. PPU</a></li>
+</ul>
+</div>
+<div class="docutils container" id="id1">
+<div role="list" class="citation-list">
+<div class="citation" id="id13" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>MOS Technology, Inc.75<span class="fn-bracket">]</span></span>
+<p><em>MCS6501 - MCS6505 MICROPROCESSORS</em>. MOS Technology, Inc., 1975.</p>
+</div>
+<div class="citation" id="id14" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>MOS Technology, Inc.76a<span class="fn-bracket">]</span></span>
+<p><em>MCS6500 MICROCOMPUTER FAMILY HARDWARE MANUAL</em>. MOS Technology, Inc., 1976.</p>
+</div>
+<div class="citation" id="id15" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>MOS Technology, Inc.76b<span class="fn-bracket">]</span></span>
+<p><em>MCS6500 MICROCOMPUTER FAMILY SOFTWARE MANUAL</em>. MOS Technology, Inc., 1976.</p>
+</div>
+<div class="citation" id="id11" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Car84<span class="fn-bracket">]</span></span>
+<p>Joseph J. Carr. <em>6502 User's Manual</em>. Reston Pub. Co., 1984.</p>
+</div>
+<div class="citation" id="id10" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Inc75<span class="fn-bracket">]</span></span>
+<p>Mos Technology Inc. Integrated circuit microprocessor with parallel binary adder having on-the-fly correction to provide decimal results. 1975. URL: <a class="reference external" href="https://patents.google.com/patent/US3991307">https://patents.google.com/patent/US3991307</a>.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Kes99<span class="fn-bracket">]</span></span>
+<p>David Kessner. Free-6502. 1999. URL: <a class="reference external" href="https://www.sprow.co.uk/dump/index.htm#Free6502">https://www.sprow.co.uk/dump/index.htm#Free6502</a>.</p>
+</div>
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Mor12<span class="fn-bracket">]</span></span>
+<p>Nick Morgan. Easy 6502. 2012. URL: <a class="reference external" href="https://skilldrick.github.io/easy6502/">https://skilldrick.github.io/easy6502/</a>.</p>
+</div>
+<div class="citation" id="id8" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Qui11<span class="fn-bracket">]</span></span>
+<p>Quietust. Chip images. 2011. URL: <a class="reference external" href="https://www.qmtpro.com/~nes/chipimages/index.php">https://www.qmtpro.com/~nes/chipimages/index.php</a>.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Tay04<span class="fn-bracket">]</span></span>
+<p>Brad Taylor. 2a03 technical reference. 2004. URL: <a class="reference external" href="https://www.nesdev.org/2A03%20technical%20reference.txt">https://www.nesdev.org/2A03%20technical%20reference.txt</a>.</p>
+</div>
+</div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">NES Emulator</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpu.html">1. CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ppu.html">2. PPU</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="cpu.html" title="next chapter"><span class="section-number">1. </span>Central Processing Unit</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Matyas Daniel.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.0.2</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

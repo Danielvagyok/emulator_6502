@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Central Processing Unit &#8212; NES Emulator 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=c058f7c8" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=2709fde1"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1.1. 6502 CPU" href="core_6502.html" />
+    <link rel="prev" title="NES Emulator documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="central-processing-unit">
+<h1><span class="section-number">1. </span>Central Processing Unit<a class="headerlink" href="#central-processing-unit" title="Link to this heading">¶</a></h1>
+<p>The CPU of the NES was developed by Ricoh and it is called <strong>RP2A03</strong>. This chip
+is almost an identical copy of the CPU <strong>6502</strong> made by MOS Technology.</p>
+<p>Binary Coded Decimal mode is not supported on 2A03 because 5 transistors were
+removed from the original 6502. One can still set and clear the decimal flag,
+but it will not have an effect electrically. This was almost certainly done
+because of copyright rules, since MOS Technology filed a patent for their
+parallel decimal number adder. <span id="id1">[<a class="reference internal" href="index.html#id10" title="Mos Technology Inc. Integrated circuit microprocessor with parallel binary adder having on-the-fly correction to provide decimal results. 1975. URL: https://patents.google.com/patent/US3991307.">Inc75</a>]</span> <span id="id2">[<a class="reference internal" href="index.html#id8" title="Quietust. Chip images. 2011. URL: https://www.qmtpro.com/~nes/chipimages/index.php.">Qui11</a>]</span></p>
+<p>I do not have to worry about copyright laws (hopefully), so the goal of the
+project initially is just to implement a working 6502 on an FPGA board.</p>
+<p>An important addition of Ricoh to the 6502 chip is the Audio Processing Unit
+(APU). The 2A03 has 4 internal sound channels which are able to generate
+semi-analog sound, and it has a sound channel capable of playing samples based
+on the memory map or using the 7-bit unsigned Pulse Code Modulator (PCM)
+directly.</p>
+<p>Sound channels:</p>
+<ul class="simple">
+<li><p>2 rectangle wave internal channels</p></li>
+<li><p>1 triangle wave internal channel</p></li>
+<li><p>1 random wavelength internal channel</p></li>
+<li><p>1 external channel <span id="id3">[<a class="reference internal" href="index.html#id5" title="Brad Taylor. 2a03 technical reference. 2004. URL: https://www.nesdev.org/2A03%20technical%20reference.txt.">Tay04</a>]</span></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">2A03 CPU</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core_6502.html">1.1. 6502 CPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apu.html">1.2. APU</a></li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">NES Emulator</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. CPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_6502.html">1.1. 6502 CPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apu.html">1.2. APU</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ppu.html">2. PPU</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">NES Emulator documentation</a></li>
+      <li>Next: <a href="core_6502.html" title="next chapter"><span class="section-number">1.1. </span>6502 CPU</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Matyas Daniel.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.0.2</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/cpu.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

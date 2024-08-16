@@ -1,0 +1,84 @@
+Instruction decoder
+===================
+
+The instructions are divided into 3 parts:
+
+OOOA.AAGG
+
+- O = operation
+- A = addressing mode
+- G = group
+
+Masks are used to separate the respective parts and they are analyzed
+separately.
+
+Group
+-----
+
+There are three groups:
+
+- 00 = group 3
+- 01 = group 1
+- 10 = group 2
+- 11 = invalid instruction
+
+**Group 1** instructions are executed on the Accumulator and have the following
+addressing modes: Immediate, Zero Page, Zero Page Indexed by X, Absolute,
+Absolute Indexed by X, Absolute Indexed by Y, Indexed Indirect by X, Indirect
+Indexed by Y.
+
+**Group 2** has the following addressing modes: Zero Page, Zero Page Indexed
+(sometimes X and sometimes Y), Absolute, Absolute Indexed (sometimes X and
+sometimes Y). Most of these instructions are executed on memory, i.e., data is
+fetched from memory and it is written back to the same location. Group 2 can be
+divided two subgroups. **Group 2A** instructions include the shift and rotate
+operations, and these have a new addressing mode: Accumulator addressing, which
+operates directly on the Accumulator. Some of **group 2B** instructions are
+executed on register X. The common thing in them is that they lack Accumulator
+addressing. In group 2B some group 3-ish instructions (they do not have the
+required addressing modes by group 2) intervene for undefined addressing mode
+masks. These use Implied addressing. 
+
+**Group 3** includes every remaining instruction. A commonality between these
+operations cannot be concluded.
+
+*Implementation note*: From group 3 only JMP is implemented.
+
+Addressing Mode
+---------------
+
+:ref:`addr_mode` are detailed in another section. 
+
+.. csv-table:: 
+    :header: "Addressing mask", "Group 1", "Group 2A", "Group 2B", "Group 2-extra", "Group 3"
+    :stub-columns: 1
+
+    "000", "IDX_IND", "---", "---", "---", ""
+    "001", "ZERO_PG", "ZERO_PG", "ZERO_PG", "---", ""
+    "010", "IMM", "A", "---", "IMPLIED", ""
+    "011", "ABSOLUTE", "ABSOLUTE", "ABSOLUTE", "---", "ABSOLUTE, IND_ABS (JMP);
+    ..."
+    "100", "IND_IDX", "---", "---", "---", ""
+    "101", "ZERO_PG_X", "ZERO_PG_X", "ZERO_PG_Y **if** op = (STX or LDX)
+    **else** ZERO_PG_X", "---", ""
+    "110", "ABS_IDX_Y", "---", "---", "IMPLIED", ""
+    "111", "ABS_IDX_X", "ABS_IDX_Y", "ABS_IDX_Y **if** op = STX **else**
+    ABS_IDX_Y", "---", ""
+
+Operation
+---------
+
+.. csv-table:: 
+    :header: "Operation mask", "Group 1", "Group 2A", "Group 2B", "Group 2-extra", "Group 3"
+    :stub-columns: 1
+
+    "000", "ORA", "ASL", "---", "---", ""
+    "001", "AND", "ROL_OP", "---", "---", ""
+    "010", "EOR", "LSR", "---", "---", "JMP (ABSOLUTE), ..."
+    "011", "ADC", "ROR_OP", "---", "---", "JMP (IND_ABS), ..."
+    "100", "STA", "---", "STX", "TXA, TXS", ""
+    "101", "LDA", "---", "LDX", "TAX, TSX", ""
+    "110", "CMP", "---", "DEC", "DEX", ""
+    "111", "SBC", "---", "INC", "NOP", ""
+
+:cite:p:`6502:swmanual`
